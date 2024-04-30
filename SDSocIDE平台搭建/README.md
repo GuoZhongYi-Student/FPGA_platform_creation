@@ -30,10 +30,10 @@ linux.bif:打包zynq_fsbl.elf、design_1_wrapper.bit、u-boot.elf为BOOT.BIN文�
     the_ROM_image:
     {
     [bootloader]<fsbl.elf>
-    <design_1_wrapper.bit>
+    <bitstream.bit>
     <u-boot.elf>
     }
-<>内最好填对应文件的绝对路径，不包含<>符号。
+bootloader和boot选项<>内最好填相对路径，绝对路径也可以。但bitstream.bit一定要写相对路径，否则运行含有硬件加速的程序时系统会卡死。是因为使用相对路径时，项目生成的bit文件会替换相对路径中的文件，而绝对路径系统找不到对应的文件。（踩坑！排查了两天）
 
 ## 2.建立SDSoc平台项目
 新建SDSoc项目，选择平台项目，如下：
